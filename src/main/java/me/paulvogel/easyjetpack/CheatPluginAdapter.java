@@ -1,6 +1,5 @@
-package net.jselby.ej;
+package me.paulvogel.easyjetpack;
 
-import net.jselby.ej.impl.AntiCheatImpl;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -9,25 +8,10 @@ import java.util.ArrayList;
 public abstract class CheatPluginAdapter {
     private static ArrayList<CheatPluginAdapter> adapters = new ArrayList<CheatPluginAdapter>();
 
-    public abstract void exemptPlayer(Player player,
-                                      CheatPluginAdapter.Type type);
-
-    public abstract void unexemptPlayer(Player player,
-                                        CheatPluginAdapter.Type type);
-
-    public abstract boolean isExempted(Player player,
-                                       CheatPluginAdapter.Type type);
-
-    public abstract boolean isPluginEnabled();
-
-    public static enum Type {
-        FLY, NOCLIP
-    }
-
-    public static void run() {
+    private static void run() {
         if (Bukkit.getServer().getPluginManager().getPlugin("AntiCheat") != null) {
             System.out.println("AntiCheat found! Hooking API...");
-            adapters.add(new AntiCheatImpl());
+            //adapters.add(new AntiCheatImpl());
         }
     }
 
@@ -64,5 +48,17 @@ public abstract class CheatPluginAdapter {
             }
         }
         return true;
+    }
+
+    public abstract void exemptPlayer(Player player, CheatPluginAdapter.Type type);
+
+    public abstract void unexemptPlayer(Player player, CheatPluginAdapter.Type type);
+
+    public abstract boolean isExempted(Player player, CheatPluginAdapter.Type type);
+
+    public abstract boolean isPluginEnabled();
+
+    public enum Type {
+        FLY, NOCLIP
     }
 }

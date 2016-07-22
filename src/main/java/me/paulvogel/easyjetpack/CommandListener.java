@@ -1,7 +1,7 @@
-package net.jselby.ej;
+package me.paulvogel.easyjetpack;
 
-import net.jselby.ej.api.EasyJetpackAPI;
-import net.jselby.ej.api.Jetpack;
+import me.paulvogel.easyjetpack.api.EasyJetpackAPI;
+import me.paulvogel.easyjetpack.api.Jetpack;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

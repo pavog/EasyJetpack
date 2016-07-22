@@ -1,12 +1,10 @@
-package net.jselby.ej.impl;
+package me.paulvogel.easyjetpack.impl;
 
-import net.gravitydevelopment.anticheat.api.AntiCheatAPI;
-import net.gravitydevelopment.anticheat.check.CheckType;
-import net.jselby.ej.CheatPluginAdapter;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+public class AntiCheatImpl {
 
-public class AntiCheatImpl extends CheatPluginAdapter {
+    //extends CheatPluginAdapter {
+
+    /*
 
     @Override
     public void exemptPlayer(Player player, Type type) {
@@ -47,5 +45,7 @@ public class AntiCheatImpl extends CheatPluginAdapter {
         }
         return false;
     }
+
+    */
 
 }

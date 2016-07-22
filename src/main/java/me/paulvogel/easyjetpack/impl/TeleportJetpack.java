@@ -1,14 +1,16 @@
-package net.jselby.ej.impl;
+package me.paulvogel.easyjetpack.impl;
 
-import net.jselby.ej.Utils;
-import net.jselby.ej.api.FlightTypes;
-import net.jselby.ej.api.Jetpack;
-import net.jselby.ej.api.JetpackEvent;
+import me.paulvogel.easyjetpack.Utils;
+import me.paulvogel.easyjetpack.api.FlightTypes;
+import me.paulvogel.easyjetpack.api.Jetpack;
+import me.paulvogel.easyjetpack.api.JetpackEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.HashSet;
 
 /**
  * A jetpack for teleporting around, using the power of ender pearls
@@ -38,7 +40,7 @@ public class TeleportJetpack extends Jetpack {
     @SuppressWarnings("deprecation")
     @Override
     public void onFlyEvent(JetpackEvent event) {
-        Block block = event.getPlayer().getTargetBlock(null, 30);
+        Block block = event.getPlayer().getTargetBlock((HashSet<Material>) null, 30);
         if (block != null) {
             Location loc = block.getLocation().add(0, 2, 0);
             loc.setYaw(event.getPlayer().getLocation().getYaw());

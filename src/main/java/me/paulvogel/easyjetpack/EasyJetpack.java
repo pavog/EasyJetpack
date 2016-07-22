@@ -1,16 +1,12 @@
-package net.jselby.ej;
+package me.paulvogel.easyjetpack;
 
-import net.jselby.ej.api.EasyJetpackAPI;
-import net.jselby.ej.impl.*;
+import me.paulvogel.easyjetpack.api.EasyJetpackAPI;
+import me.paulvogel.easyjetpack.impl.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
-import org.mcstats.Metrics.Graph;
-import org.mcstats.Metrics.Plotter;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * The main EasyJetpack class. This registers the default Jetpacks, as well as
@@ -20,6 +16,15 @@ import java.io.IOException;
  */
 public class EasyJetpack extends JavaPlugin {
     private static EasyJetpack instance;
+
+    /**
+     * Obtains a instance of the plugin
+     *
+     * @return A EasyJetpack instance
+     */
+    public static EasyJetpack getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
@@ -43,10 +48,8 @@ public class EasyJetpack extends JavaPlugin {
             getLogger().warning("allow-flight is set to false in the");
             getLogger().warning("server.properties configuration file!");
             getLogger().warning("This will mean that players will be kicked");
-            getLogger().warning(
-                    "when using Jetpacks for a extended time period");
-            getLogger().warning(
-                    "Consider enabling allow-flight to prevent this");
+            getLogger().warning("when using Jetpacks for a extended time period");
+            getLogger().warning("Consider enabling allow-flight to prevent this");
             getLogger().warning("==========");
         }
 
@@ -74,60 +77,21 @@ public class EasyJetpack extends JavaPlugin {
         new EasyJetpackAPI(manager);
 
         // Load Metrics
-        try {
-            Metrics metrics = new Metrics(this);
-            Graph graph = metrics.createGraph("Jetpack count");
-            for (int i = 0; i <= 10; i++) {
-                final int count = i;
-                graph.addPlotter(new Plotter("" + count) {
-                    @Override
-                    public int getValue() {
-                        if (EasyJetpackAPI.getManager().getJetpacks().length == count) {
-                            return 1;
-                        }
-                        return 0;
-                    }
-                });
-            }
-            graph.addPlotter(new Plotter("More then 10") {
-                @Override
-                public int getValue() {
-                    if (EasyJetpackAPI.getManager().getJetpacks().length > 10) {
-                        return 1;
-                    }
-                    return 0;
-                }
-            });
-            metrics.start();
-        } catch (IOException e) {
-            getLogger().warning(
-                    "Metrics failed to start: " + e.getClass().getName() + ": "
-                            + e.getMessage());
-        }
+
+        // TODO Add new metrics here
 
         // Hook anticheat plugins here (AntiCheat, NCP...)
         try {
-            CheatPluginAdapter.run();
+            //CheatPluginAdapter.run();
         } catch (Exception ignored) {
         }
 
-        getLogger().info(
-                "EasyJetpack (v" + getDescription().getVersion()
-                        + ") has been successfully enabled!");
+        getLogger().info("EasyJetpack (v" + getDescription().getVersion() + ") has been successfully enabled!");
     }
 
     @Override
     public void onDisable() {
         Bukkit.getServer().resetRecipes();
-    }
-
-    /**
-     * Obtains a instance of the plugin
-     *
-     * @return A EasyJetpack instance
-     */
-    public static EasyJetpack getInstance() {
-        return instance;
     }
 
     /**

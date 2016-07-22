@@ -1,7 +1,7 @@
 name: EasyJetpack
-main: net.jselby.ej.EasyJetpack
-version: 1.3
-author: j_selby
+main: me.paulvogel.easyjetpack.EasyJetpack
+version: @version@-@apitype@-@apiversion@
+authors: [j_selby, Paul Vogel]
 softdepend: [AntiCheat]
 permissions:
    easyjetpack.jetpackname:
